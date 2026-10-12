@@ -1,19 +1,3 @@
-"""
-Extract Landsat 8 data from GEE at QTP SOC point locations,
-run local super-resolution model to generate Hyperion 57-band spectra,
-and build the paired (spectra, SOC) dataset for Random Forest.
-
-Pipeline:
-  1. Read QTP SOC points (lat/lon) from Excel
-  2. For each point, fetch Landsat 8 SR (6 bands) via GEE/geemap
-     -> 64x64 patch centered on point
-  3. Run trained UNet/Diffusion model -> Hyperion 57-band 64x64 patch
-  4. Extract center pixel spectrum + surround statistics
-  5. Output paired CSV for rf_soc_prediction.py
-
-Dependencies: geemap, earthengine-api, torch, joblib
-"""
-
 import os
 import sys
 import numpy as np
